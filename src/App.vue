@@ -18,6 +18,10 @@
         <label for="qtd-baterias">Quantidade de Baterias</label>
         <input v-model="dados.qtdBaterias" type="number" step="1" id="qtd-baterias" min="0">
       </div>
+      <div class="form-group">
+        <label for="qtd-baterias">Fator de Potência: <span>(0-1)</span></label>
+        <input v-model="dados.fatorPotencia" type="number" step=".01" id="fator-potencia" min="0" max="1">
+      </div>
 
       <button type="submit">Calcular</button>
     </form>
@@ -45,7 +49,7 @@ export default {
     calcularAutonomia(event) {
       event.preventDefault();
       const autonomiaNobreak = window.ipcRenderer.sendSync('calcularAutonomia', this.dados)
-      alert(`Autonomia do Nobreak = ${autonomiaNobreak}`)
+      alert(`Autonomia do Nobreak = ${autonomiaNobreak} hora(s)`)
     }
   }
 }
